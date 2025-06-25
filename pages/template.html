@@ -11,8 +11,25 @@
     <title>book library</title>
   </head>
   <body>
-    {% for books in chunked_books %}
-      <div class="container">
+    <div class="container">
+      <nav aria-label="Page navigation example" padding-left: ($spacer * .5) !important;>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      {% for books in chunked_books %}
         <div class="row">
           {% for book in books %}
             <div class="col-sm">
@@ -34,8 +51,8 @@
             </div>
           {% endfor %}
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

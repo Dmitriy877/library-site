@@ -1,6 +1,7 @@
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import json
 import os
+import math
 
 from livereload import Server
 from more_itertools import chunked
@@ -16,9 +17,12 @@ def rebuild():
 
     book_pages = list(chunked(books, 20))
 
-    for i, book_page in enumerate(book_pages):
+    for page, book_page in enumerate(book_pages):
 
+        pages_amount = math.ceil(len(book_pages))
         chunked_books = list(chunked(book_page, 2))
+        current_page_number = page + 1
+        print(current_page_number)
 
         env = Environment(
             loader=FileSystemLoader('.'),
@@ -28,10 +32,12 @@ def rebuild():
         template = env.get_template('./pages/template.html')
 
         rendered_page = template.render(
-            chunked_books=chunked_books
+            chunked_books=chunked_books,
+            pages_amount=pages_amount,
+            current_page_number=current_page_number
         )
 
-        with open(os.path.join('pages', f'index{i}.html'), 'w', encoding="utf8") as file:
+        with open(os.path.join('pages', f'index{current_page_number}.html'), 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
 
