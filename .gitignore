@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 media
 CSS_lesson3_env
+index.html
 # C extensions
 *.so
 
