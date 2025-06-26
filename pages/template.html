@@ -14,19 +14,31 @@
     <div class="container">
       <nav aria-label="Page navigation example" padding-left: ($spacer * .5) !important;>
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
+          {% if current_page_number==1 %}
+            <li class="page-item disabled">
+              <a class="page-link" href="index{{current_page_number-1}}.html" aria-disabled="true">Назад</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="index{{current_page_number-1}}.html" aria-disabled="true">Назад</a>
+            </li>
+          {% endif %}
+          {% for page in range(1, pages_amount+1) %}
+            {% if page==current_page_number %}
+              <li class="page-item active"><a class="page-link" href="index{{page}}.html">{{page}}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="index{{page}}.html">{{page}}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if current_page_number==pages_amount %}
+            <li class="page-item disabled">
+              <a class="page-link" href="index{{current_page_number+1}}.html" aria-disabled="true">Вперед</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"></li>
+              <a class="page-link" href="index{{current_page_number+1}}.html" aria-disabled="true">Вперед</a>
+            </li>
+          {% endif %}
         </ul>
       </nav>
       {% for books in chunked_books %}

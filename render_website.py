@@ -22,7 +22,6 @@ def rebuild():
         pages_amount = math.ceil(len(book_pages))
         chunked_books = list(chunked(book_page, 2))
         current_page_number = page + 1
-        print(current_page_number)
 
         env = Environment(
             loader=FileSystemLoader('.'),
@@ -45,6 +44,6 @@ rebuild()
 
 server = Server()
 
-server.watch('template.html', rebuild)
+server.watch('./pages/template.html', rebuild)
 
 server.serve(root='./pages')
