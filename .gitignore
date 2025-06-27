@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-media
 CSS_lesson3_env
 index.html
 # C extensions
