@@ -36,8 +36,12 @@ def rebuild():
             current_page_number=current_page_number
         )
 
-        with open(f'index{current_page_number}.html', 'w', encoding="utf8") as file:
-            file.write(rendered_page)
+        if current_page_number == 1:
+            with open('index.html', 'w', encoding="utf8") as file:
+                file.write(rendered_page)
+        else:
+            with open(f'index{current_page_number}.html', 'w', encoding="utf8") as file:
+                file.write(rendered_page)
 
 
 rebuild()
