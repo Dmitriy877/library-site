@@ -28,7 +28,7 @@ def rebuild():
             autoescape=select_autoescape(['html', 'xml'])
         )
 
-        template = env.get_template('./pages/template.html')
+        template = env.get_template('template.html')
 
         rendered_page = template.render(
             chunked_books=chunked_books,
@@ -36,7 +36,7 @@ def rebuild():
             current_page_number=current_page_number
         )
 
-        with open(os.path.join('pages', f'index{current_page_number}.html'), 'w', encoding="utf8") as file:
+        with open(f'index{current_page_number}.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
 
 
@@ -44,6 +44,6 @@ rebuild()
 
 server = Server()
 
-server.watch('./pages/template.html', rebuild)
+server.watch('template.html', rebuild)
 
-server.serve(root='./pages')
+server.serve(root='.')
