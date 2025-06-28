@@ -9,8 +9,6 @@ from more_itertools import chunked
 
 def rebuild():
 
-    os.makedirs('pages', exist_ok=True)
-
     with open(os.path.join('media', 'meta_data.json'), encoding='utf-8') as file:
         books_json = file.read()
     books = json.loads(books_json)
@@ -44,10 +42,16 @@ def rebuild():
                 file.write(rendered_page)
 
 
-rebuild()
+def main():
 
-server = Server()
+    rebuild()
 
-server.watch('template.html', rebuild)
+    server = Server()
 
-server.serve(root='.')
+    server.watch('template.html', rebuild)
+
+    server.serve(root='.')
+
+
+if __name__ == '__main__':
+    main()
