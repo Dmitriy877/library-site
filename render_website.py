@@ -52,9 +52,7 @@ def main():
     args = parser.parse_args()
 
     with open(args.path, 'r', encoding='utf-8') as file:
-        books_json = file.read()
-
-    books = json.loads(books_json)
+        books = json.load(file)
 
     rebuild(books)
 
