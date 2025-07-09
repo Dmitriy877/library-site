@@ -17,16 +17,16 @@ def rebuild(books):
 
     os.makedirs('pages', exist_ok=True)
 
-    book_pages = list(chunked(books, 20))
+    book_pages_amount = list(chunked(books, 20))
 
-    for page, book_page in enumerate(book_pages):
+    for page, book_page in enumerate(book_pages_amount):
 
-        pages_amount = math.ceil(len(book_pages))
-        chunked_books = list(chunked(book_page, 2))
+        pages_amount = math.ceil(len(book_pages_amount))
+        chunked_books_sides = list(chunked(book_page, 2))
         current_page_number = page + 1
 
         rendered_page = template.render(
-            chunked_books=chunked_books,
+            chunked_books=chunked_books_sides,
             pages_amount=pages_amount,
             current_page_number=current_page_number
         )
