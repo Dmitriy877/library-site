@@ -31,10 +31,10 @@ def rebuild(books):
         )
 
         if page == 1:
-            with open(Path('.')/'pages'/'index.html', 'w', encoding='utf8') as file:
+            with open(Path('.')/'index.html', 'w', encoding='utf8') as file:
                 file.write(rendered_page)
         else:
-            with open(Path('.')/'pages'/f'index{page}.html', 'w', encoding='utf8') as file:
+            with open(Path('.')/f'index{page}.html', 'w', encoding='utf8') as file:
                 file.write(rendered_page)
 
 
