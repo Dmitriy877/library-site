@@ -19,23 +19,22 @@ def rebuild(books):
 
     book_pages_amount = list(chunked(books, 20))
 
-    for page, book_page in enumerate(book_pages_amount):
+    for page, book_page in enumerate(book_pages_amount, start=1):
 
         pages_amount = math.ceil(len(book_pages_amount))
         chunked_books_sides = list(chunked(book_page, 2))
-        current_page_number = page + 1
 
         rendered_page = template.render(
             chunked_books=chunked_books_sides,
             pages_amount=pages_amount,
-            current_page_number=current_page_number
+            current_page_number=page,
         )
 
-        if current_page_number == 1:
+        if page == 1:
             with open(Path('.')/'pages'/'index.html', 'w', encoding='utf8') as file:
                 file.write(rendered_page)
         else:
-            with open(Path('.')/'pages'/f'index{current_page_number}.html', 'w', encoding='utf8') as file:
+            with open(Path('.')/'pages'/f'index{page}.html', 'w', encoding='utf8') as file:
                 file.write(rendered_page)
 
 
