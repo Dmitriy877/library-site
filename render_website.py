@@ -32,10 +32,10 @@ def rebuild(books):
         )
 
         if current_page_number == 1:
-            with open(Path('.')/'pages'/'index.html', 'w', encoding="utf8") as file:
+            with open(Path('.')/'pages'/'index.html', 'w', encoding='utf8') as file:
                 file.write(rendered_page)
         else:
-            with open(Path('.')/'pages'/f'index{current_page_number}.html', 'w', encoding="utf8") as file:
+            with open(Path('.')/'pages'/f'index{current_page_number}.html', 'w', encoding='utf8') as file:
                 file.write(rendered_page)
 
 
