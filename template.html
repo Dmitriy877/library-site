@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="./static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
 
     <title>book library</title>
-    <link rel="icon" type="image/png" href="./media/img/favicon.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="../media/img/favicon.png" sizes="196x196">
   </head>
   <body>
     <div class="container">
@@ -63,7 +63,7 @@
               <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                   <div class="col-md-4">
-                    <img src="./media/{{book.img_src|urlencode}}" class="card-img" alt="./media/img/nopic.gif">
+                    <img src="../media/{{book.img_src|urlencode}}" class="card-img" alt="./media/img/nopic.gif">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -72,7 +72,7 @@
                       {% for genre in book.genres.split(',')%}
                       <h6><span class="badge badge-secondary">{{genre}}</span></h6>
                       {% endfor %}
-                      <a href="./media/{{book.book_path|urlencode}}" target="_blank">Читать</a>
+                      <a href="../media/{{book.book_path|urlencode}}" target="_blank">Читать</a>
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                   </div>
@@ -86,8 +86,8 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="./static/jquery-3.5.1.slim.min.js"></script>
-    <script src="./static/bootstrap.bundle.min.js"></script>
+    <script src="../static/jquery-3.5.1.slim.min.js"></script>
+    <script src="../static/bootstrap.bundle.min.js"></script>
 
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

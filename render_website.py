@@ -1,17 +1,21 @@
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+import argparse
 import json
-import os
 import math
-
+import os
+from pathlib import Path
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
 from more_itertools import chunked
 
 
-def rebuild():
+def rebuild(books):
+    env = Environment(
+            loader=FileSystemLoader('.'),
+            autoescape=select_autoescape(['html', 'xml'])
+        )
+    template = env.get_template('template.html')
 
-    with open(os.path.join('media', 'meta_data.json'), encoding='utf-8') as file:
-        books_json = file.read()
-    books = json.loads(books_json)
+    os.makedirs('pages', exist_ok=True)
 
     book_pages = list(chunked(books, 20))
 
@@ -21,13 +25,6 @@ def rebuild():
         chunked_books = list(chunked(book_page, 2))
         current_page_number = page + 1
 
-        env = Environment(
-            loader=FileSystemLoader('.'),
-            autoescape=select_autoescape(['html', 'xml'])
-        )
-
-        template = env.get_template('template.html')
-
         rendered_page = template.render(
             chunked_books=chunked_books,
             pages_amount=pages_amount,
@@ -35,16 +32,31 @@ def rebuild():
         )
 
         if current_page_number == 1:
-            with open('index.html', 'w', encoding="utf8") as file:
+            with open(Path('.')/'pages'/'index.html', 'w', encoding="utf8") as file:
                 file.write(rendered_page)
         else:
-            with open(f'index{current_page_number}.html', 'w', encoding="utf8") as file:
+            with open(Path('.')/'pages'/f'index{current_page_number}.html', 'w', encoding="utf8") as file:
                 file.write(rendered_page)
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description='Скрипт для запуска библиотеки'
+    )
+    parser.add_argument(
+        '-p',
+        '--path',
+        help='Путь до библиотеки json',
+        default=Path('.')/'media'/'meta_data.json'
+    )
+    args = parser.parse_args()
 
-    rebuild()
+    with open(args.path, 'r', encoding='utf-8') as file:
+        books_json = file.read()
+
+    books = json.loads(books_json)
+
+    rebuild(books)
 
     server = Server()
 
