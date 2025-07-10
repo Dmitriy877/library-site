@@ -18,10 +18,6 @@
               <li class='page-item disabled'>
                 <a class='page-link' href='index{{current_page_number-1}}.html' aria-disabled='true'>Назад</a>
               </li>
-            {% elif current_page_number==2 %}
-              <li class='page-item'>
-                <a class='page-link' href='index.html' aria-disabled='true'>Назад</a>
-              </li>
             {% else %}
               <li class='page-item'>
                 <a class='page-link' href='index{{current_page_number-1}}.html' aria-disabled='true'>Назад</a>
@@ -29,17 +25,9 @@
             {% endif %}
             {% for page in range(1, pages_amount+1) %}
               {% if page==current_page_number %}
-                {% if current_page_number == 1 %}
-                  <li class='page-item active'><a class='page-link' href='index.html'>{{page}}</a></li>
-                {% else %}
                   <li class='page-item active'><a class='page-link' href='index{{page}}.html'>{{page}}</a></li>
-                {% endif %}
               {% else %}
-                {% if page == 1 %}
-                  <li class='page-item'><a class='page-link' href='index.html'>{{page}}</a></li>
-                {% else %}
                   <li class='page-item'><a class='page-link' href='index{{page}}.html'>{{page}}</a></li>
-                {% endif %}
               {% endif %}
             {% endfor %}
             {% if current_page_number==pages_amount %}
