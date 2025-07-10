@@ -51,13 +51,13 @@ def main():
     with open(args.path, 'r', encoding='utf-8') as file:
         books = json.load(file)
 
-    rebuild(books)
-
     server = Server()
-
+    rebuild(books)
     server.watch('template.html', rebuild)
-
-    server.serve(root='.')
+    server.serve(
+        root=Path('.')/'pages',
+        default_filename='index1.html'
+    )
 
 
 if __name__ == '__main__':
