@@ -55,8 +55,8 @@ def main():
     rebuild(books)
     server.watch('template.html', rebuild)
     server.serve(
-        root=Path('.')/'pages',
-        default_filename='index1.html'
+        root='.',
+        default_filename='index1.html',
     )
 
 
