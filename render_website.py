@@ -51,12 +51,11 @@ def main():
     with open(args.path, 'r', encoding='utf-8') as file:
         books = json.load(file)
 
-    server = Server()
     rebuild(books)
+    server = Server()
     server.watch('template.html', rebuild)
     server.serve(
         root='.',
-        default_filename='index1.html',
     )
 
 
